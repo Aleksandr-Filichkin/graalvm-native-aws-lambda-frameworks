@@ -16,13 +16,14 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 
+import static com.filichkin.blog.lambda.storage.BookStorage.TABLE_NAME;
 import static software.amazon.awssdk.enhanced.dynamodb.mapper.StaticAttributeTags.primaryPartitionKey;
 
 
 @ApplicationScoped
 @RegisterForReflection(targets = {Book.class})
 public class Config {
-    private static final String TABLE_NAME = "book";
+
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
     @Produces

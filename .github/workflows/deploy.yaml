@@ -28,8 +28,7 @@ jobs:
 
       - name: Build and Deploy
         run: . ./build.sh
-  test:
-    runs-on: ubuntu-latest
-    steps:
       - name: test
         run: . ./test.sh
+
+
