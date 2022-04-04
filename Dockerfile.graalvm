@@ -1,0 +1,17 @@
+FROM ghcr.io/graalvm/native-image:latest
+
+WORKDIR /tmp/dist
+ADD ./lambda-graalvm/target/lambda-graalvm-1.0-SNAPSHOT.jar ./app.jar
+RUN $JAVA_HOME/bin/native-image -jar ./app.jar --verbose --no-fallback
+RUN  microdnf install zip
+
+ADD bootstrap bootstrap
+
+RUN chmod +x bootstrap
+RUN chmod +x ./app
+
+RUN zip -j function.zip bootstrap app
+
+
+ENTRYPOINT ["./app"]
+
