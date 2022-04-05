@@ -68,7 +68,7 @@ Resources:
       Handler: not.used.in.provided.runtime
       Runtime: provided
       CodeUri: quarkus-aws-lambda/target/function.zip
-      MemorySize: 256
+      MemorySize: 128
       Tracing: Active
       Policies:
         - DynamoDBCrudPolicy:
