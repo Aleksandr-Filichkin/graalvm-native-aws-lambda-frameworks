@@ -10,7 +10,7 @@ API_ENDPOINT=$(sed -e 's/^"//' -e 's/"$//' <<< $API_ENDPOINT)
 #echo "Test in browser: $API_ENDPOINT"
 
 
-for runtime in java graal quarkus
+for runtime in java graal-17 graal-11 quarkus
 do
  echo "------------- $runtime:"
  curl -X POST --fail -w '\nTotal: %{time_total}s\n' --location "$API_ENDPOINT/$runtime/book" \
