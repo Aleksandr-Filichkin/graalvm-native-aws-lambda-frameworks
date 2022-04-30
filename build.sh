@@ -1,7 +1,6 @@
 #!/bin/sh
 set -e
-mkdir -p "graalvm_latest"
-mkdir -p "graalvm_11-21.3"
+mkdir -p "graalvm"
 
 #builds a native binary and zip
 mvn clean install -P native
@@ -12,14 +11,8 @@ docker build -f Dockerfile.graalvm -t lambda-graalvm .
 #
 #copy from the docker container to host
 containerId=$(docker create -ti lambda-graalvm bash)
-docker cp ${containerId}:/tmp/dist graalvm_latest
+docker cp ${containerId}:/tmp/dist graalvm
 
-#builds a native binary and zip
-docker build -f Dockerfile.graalvm-java11-21.3 -t lambda-graalvm-11-21.3 .
-#
-#copy from the docker container to host
-containerId=$(docker create -ti lambda-graalvm-11-21.3)
-docker cp ${containerId}:/tmp/dist graalvm_11-21.3
 
 ## Deploy lambdas
 
