@@ -22,12 +22,13 @@ Resources:
             Path: /java/book
             Method: post
 
-  GraalVMLatestFunction:
+
+  GraalVMFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: not.used.in.provided.runtime
       Runtime: provided
-      CodeUri: graalvm_latest/dist/function.zip
+      CodeUri: graalvm/dist/function.zip
       MemorySize: 128
       Tracing: Active
       Policies:
@@ -39,27 +40,7 @@ Resources:
         CreateBook:
           Type: Api
           Properties:
-            Path: /graal-17/book
-            Method: post
-
-  GraalVM11Function:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: not.used.in.provided.runtime
-      Runtime: provided
-      CodeUri: graalvm_11-21.3/dist/function.zip
-      MemorySize: 128
-      Tracing: Active
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: !Ref BooksTable
-      Timeout: 10
-
-      Events:
-        CreateBook:
-          Type: Api
-          Properties:
-            Path: /graal-11/book
+            Path: /graal/book
             Method: post
 
   QuarkusVMFunction:
